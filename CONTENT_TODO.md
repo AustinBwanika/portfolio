@@ -14,4 +14,4 @@ The site uses the supplied CV as its primary factual source and the brief for Th
 - Proposed next steps on case studies are explicitly suggestions, not completed work or commitments.
 - Review the first-person prose before publishing. Personal motivations are drafted from the brief, not quoted from prior writing.
 
-GitHub username AustinBwanika is supported by both the CV and public GitHub profile. Intended user-site repository: AustinBwanika.github.io. No remote repository has been created and nothing has been pushed or published.
+GitHub username AustinBwanika is supported by both the CV and public GitHub profile. Deployment repository: AustinBwanika/portfolio, targeting https://austinbwanika.github.io/portfolio/. Publication is controlled by the manual GitHub Actions workflow.

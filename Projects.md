@@ -12,7 +12,7 @@ npm ci
 npm run dev
 ```
 
-Open the Local URL printed by Astro (normally http://127.0.0.1:4321). Astro 7 runs its dev server in the background; use `npx astro dev stop` to stop it and `npx astro dev logs` for logs.
+Open the Local URL printed by Astro (normally http://127.0.0.1:4321/portfolio/). Astro 7 runs its dev server in the background; use `npx astro dev stop` to stop it and `npx astro dev logs` for logs.
 
 ```sh
 npm run check
@@ -43,17 +43,23 @@ The original CV remains outside the workspace and public assets. PDFs are ignore
 
 ## GitHub Pages — deliberate, manual publishing
 
-Nothing has been published, pushed or registered remotely. When ready:
+Target: **https://austinbwanika.github.io/portfolio/**. Repository: **AustinBwanika/portfolio**. Deployment is manually triggered:
 
 1. Review content and the missing-details checklist.
-2. Create the repository `AustinBwanika.github.io` under the verified `AustinBwanika` account, then commit and push this workspace including `package-lock.json`. Do not add the private CV or ignored build/dependency files.
+2. Push reviewed changes to `main` in `AustinBwanika/portfolio`, including `package-lock.json`. Do not add the private CV or ignored build/dependency files.
 3. In repository **Settings → Pages**, choose **GitHub Actions** as source.
 4. In **Actions → Deploy portfolio to GitHub Pages**, select **Run workflow**. There is deliberately no `push` trigger. Every publication requires a manual run.
 5. Verify the deployed homepage, all three direct project URLs, and an unknown URL for the 404 page.
 
-`astro.config.mjs` uses `site: 'https://austinbwanika.github.io'`, `base: '/'`, static output and trailing slashes. Each project builds to its own `index.html`, so direct requests and refreshes do not require SPA rewrites.
+`astro.config.mjs` uses `site: 'https://austinbwanika.github.io'`, `base: '/portfolio'`, static output and trailing slashes. Each project builds to its own `index.html`, so direct requests and refreshes do not require SPA rewrites.
 
-For a different username, change `site` and use its `<username>.github.io` repository. For a project repository (e.g. `portfolio`), keep the user origin as `site` and set `base: '/portfolio'`. Internal links, assets and metadata use Astro’s base-aware helper. Rebuild and test the prefixed URLs. Do not add `base` to `site` as well.
+For a different username, change `site`. For a different repository, update `base` to its name. Only use `base: '/'` for a `<username>.github.io` user-site repository. Do not add the repository path to `site` as well. Internal navigation and the favicon use the `url()` helper; Astro prefixes built CSS automatically. Canonical and social URLs use the full page path.
+
+For future files in `public/`, use `url('images/example.webp')`, `url('videos/demo.mp4')` or `url('documents/example.pdf')` for `src`, `poster` and `href`. Do not hard-code root-relative paths such as `/images/example.webp`. Imported `src/assets/` images should use Astro’s asset pipeline. No video, image or public document files are currently included; the optional CV link already uses `url()`.
+
+Local development and production previews now open at `/portfolio/`, for example `http://127.0.0.1:4322/portfolio/` if port 4322 is used. Direct project URLs have the form `/portfolio/projects/pumpsync/`.
+
+GitHub Actions must be enabled for the repository. Keep the default `GITHUB_TOKEN`; the workflow declares the required Pages and OIDC permissions, so no personal access token or extra secret is needed. If the `github-pages` environment has branch restrictions, allow `main`. No custom domain is required.
 
 The workflow follows [Astro’s official GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/) checked 15 November 2026: checkout v7, withastro/action v6, deploy-pages v5. It installs from the lockfile, checks types, builds and uploads the static artifact before deployment. Publishing itself has not been exercised.
 

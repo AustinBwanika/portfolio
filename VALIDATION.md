@@ -24,3 +24,15 @@
 ## Preview
 
 The production preview was started at http://127.0.0.1:4322 and left open for review. If it is no longer running, use `npm run preview -- --port 4322` after building. Stop it with `npx astro preview stop`. The development server can be started again with `npm run dev`.
+
+## GitHub Pages project-path preparation
+
+Target: https://austinbwanika.github.io/portfolio/ (repository AustinBwanika/portfolio).
+
+- Astro check: 0 errors, warnings or hints; production build passed.
+- Local production HTTP checks passed for `/portfolio/` and all three `/portfolio/projects/<slug>/` routes opened directly.
+- Validated 41 internal page, anchor and asset references against the build output; stylesheet and favicon requests returned HTTP 200 under `/portfolio/`.
+- Canonical and Open Graph URLs include the project base path. The generated 404 uses Astro’s `/portfolio/404/` canonical route while GitHub serves `404.html` for missing pages.
+- No image, video or public document files currently exist; future public assets must use the existing `url()` helper as documented in Projects.md. The optional CV link already does so.
+- The manually triggered workflow follows Astro’s official GitHub Pages guide. It has not been run against GitHub Pages as part of this preparation.
+- Earlier preview URLs in this log describe previous checks. Development and preview URLs now require `/portfolio/`.
