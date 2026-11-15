@@ -1,11 +1,15 @@
 ---
+import MediaImage from './MediaImage.astro';
+import { projectPreviews } from '../data/media';
 import { url, type Project } from '../data/site';
 interface Props { project: Project; index: number; }
 const { project, index } = Astro.props;
+const preview = projectPreviews[project.slug as keyof typeof projectPreviews];
 ---
 <article class:list={['project', { featured: index === 0 }]}>
   <div class="project-topline"><span class="mini-label">0{index + 1} / {project.category}</span><span class="status">{index === 0 ? 'In development' : index === 1 ? 'Academic project' : 'Client project'}</span></div>
   <h3><a href={url(`projects/${project.slug}/`)}>{project.title}<span class="project-arrow" aria-hidden="true">↗</span></a></h3>
+  {preview && <div class="project-preview"><MediaImage {...preview} /></div>}
   <p class="project-summary">{project.summary}</p>
   <p class="contribution">{project.contribution}</p>
   <ul class="tags" aria-label="Technologies">{project.technologies.map(tech => <li>{tech}</li>)}</ul>

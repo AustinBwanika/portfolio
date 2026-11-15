@@ -1,6 +1,6 @@
 # Austin Bwanika — personal portfolio
 
-A light-only, static Astro portfolio using TypeScript and plain CSS. Includes a responsive homepage, three project case studies with conceptual diagrams, a custom 404, accessible navigation and page-specific social metadata. No client JavaScript, analytics, external fonts or services are needed.
+A light-only, static Astro portfolio using TypeScript and plain CSS. Includes a responsive homepage, four project case studies with media and conceptual diagrams, a Metricell experience page, an Outside the code page, a custom 404, accessible navigation and page-specific social metadata. No client JavaScript, analytics, external fonts or services are needed.
 
 ## Local setup
 
@@ -31,13 +31,16 @@ npm run preview
 - `src/pages/projects/[slug].astro`: shared case-study template.
 - `src/styles/global.css`: colour variables, typography, responsive layouts and reduced-motion behaviour.
 - `src/layouts/Layout.astro`: shared document, metadata, favicon and skip link.
-- `CONTENT_TODO.md`: evidence gaps and missing assets to review before publication.
+- `src/data/media.ts`: imported media and homepage preview mapping.
+- `src/components/ProjectEvidence.astro`: project galleries, videos, figures and document links.
+- `src/pages/experience/metricell.astro` and `src/pages/outside-the-code.astro`: dedicated pages.
+- `CONTENT_TODO.md`: focused optional content questions; `IMPLEMENTATION_NOTES.md`: source mapping and handling decisions.
 
 Use UK English. Keep claims and measurements traceable to supplied materials. Do not describe PumpSync’s estimated losses as measured savings. All site links are native anchors and work without JavaScript.
 
 ## Images and public CV
 
-No screenshots or photos were supplied, so none are fabricated. To add genuine images, put source images in `src/assets/`, import Astro’s `Image` from `astro:assets`, and render it with meaningful `alt`, explicit dimensions and a responsive `sizes` value. Use the source aspect ratio and `width:100%; height:auto`; lazy-load images below the fold. Replace or accompany the relevant flow component with the approved image. Never include credentials, payment records or customer personal details in screenshots.
+Selected web-ready images from the supplied content are included. To add images, put optimised copies in `src/assets/`, import Astro’s `Image` from `astro:assets`, and render it with meaningful `alt`, explicit dimensions and a responsive `sizes` value. Use the source aspect ratio and `width:100%; height:auto`; lazy-load images below the fold. Replace or accompany the relevant flow component with the approved image. Never include credentials, payment records or customer personal details in screenshots.
 
 The original CV remains outside the workspace and public assets. PDFs are ignored by default. After preparing and reviewing a redacted public CV, add it under `public/austin-bwanika-cv.pdf`, add a specific allow-list exception to `.gitignore` (`!public/austin-bwanika-cv.pdf`), and set `profile.publicCv` to `austin-bwanika-cv.pdf`. The homepage download link then appears. Do not publish a phone number or home address.
 
@@ -49,13 +52,13 @@ Target: **https://austinbwanika.github.io/portfolio/**. Repository: **AustinBwan
 2. Push reviewed changes to `main` in `AustinBwanika/portfolio`, including `package-lock.json`. Do not add the private CV or ignored build/dependency files.
 3. In repository **Settings → Pages**, choose **GitHub Actions** as source.
 4. In **Actions → Deploy portfolio to GitHub Pages**, select **Run workflow**. There is deliberately no `push` trigger. Every publication requires a manual run.
-5. Verify the deployed homepage, all three direct project URLs, and an unknown URL for the 404 page.
+5. Verify the deployed homepage, all four direct project URLs, Metricell and Outside the code, and an unknown URL for the 404 page.
 
 `astro.config.mjs` uses `site: 'https://austinbwanika.github.io'`, `base: '/portfolio'`, static output and trailing slashes. Each project builds to its own `index.html`, so direct requests and refreshes do not require SPA rewrites.
 
 For a different username, change `site`. For a different repository, update `base` to its name. Only use `base: '/'` for a `<username>.github.io` user-site repository. Do not add the repository path to `site` as well. Internal navigation and the favicon use the `url()` helper; Astro prefixes built CSS automatically. Canonical and social URLs use the full page path.
 
-For future files in `public/`, use `url('images/example.webp')`, `url('videos/demo.mp4')` or `url('documents/example.pdf')` for `src`, `poster` and `href`. Do not hard-code root-relative paths such as `/images/example.webp`. Imported `src/assets/` images should use Astro’s asset pipeline. No video, image or public document files are currently included; the optional CV link already uses `url()`.
+For future files in `public/`, use `url('images/example.webp')`, `url('videos/demo.mp4')` or `url('documents/example.pdf')` for `src`, `poster` and `href`. Do not hard-code root-relative paths such as `/images/example.webp`. Imported `src/assets/` images should use Astro’s asset pipeline. The selected videos and three public PDFs use this helper; responsive images use Astro’s pipeline. See `IMPLEMENTATION_NOTES.md` for the asset mapping and size limits.
 
 Local development and production previews now open at `/portfolio/`, for example `http://127.0.0.1:4322/portfolio/` if port 4322 is used. Direct project URLs have the form `/portfolio/projects/pumpsync/`.
 

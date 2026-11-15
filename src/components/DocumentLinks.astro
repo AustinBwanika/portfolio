@@ -1,0 +1,11 @@
+---
+import { statSync } from 'node:fs';
+import { url } from '../data/site';
+interface Props { file: string; title: string; summary: string; viewLabel: string; }
+const { file, title, summary, viewLabel } = Astro.props;
+const size = (statSync(`public/${file}`).size / 1024 / 1024).toFixed(1);
+---
+<aside class="document-links" aria-label={title}>
+  <div><p class="eyebrow">Read the detail · PDF · {size} MB</p><h3>{title}</h3><p>{summary}</p></div>
+  <div class="project-links"><a class="text-link" href={url(file)}>{viewLabel} ↗</a><a class="text-link" href={url(file)} download>Download PDF <span class="sr-only">— {title}</span> ↓</a></div>
+</aside>

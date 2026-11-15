@@ -1,0 +1,7 @@
+---
+import MediaImage from './MediaImage.astro';
+import type { ImageMetadata } from 'astro';
+interface Props { images: { src: ImageMetadata; alt: string; caption: string }[]; }
+const { images } = Astro.props;
+---
+<div class="image-gallery">{images.map(image => <MediaImage {...image} />)}</div>

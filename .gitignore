@@ -7,3 +7,9 @@ dist/
 private/
 source-documents/
 *.pdf
+# Only reviewed public document copies are versionable.
+!public/documents/football-dissertation.pdf
+!public/documents/london-airbnb-report.pdf
+!public/documents/metricell-placement-report.pdf
+*.zip
+*.mov

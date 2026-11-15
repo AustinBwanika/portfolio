@@ -1,38 +1,28 @@
-# Validation — 15 November 2026
+# Validation — media update, 15 November 2026
 
 ## Passed
 
-- `npm run check`: 0 errors, 0 warnings, 0 hints across 9 files.
-- `npm run build`: generated five static pages (homepage, three case studies, custom 404). Rebuilt successfully after the final contrast adjustment.
-- Dependency installation audit: 0 vulnerabilities at install time.
-- Parsed built HTML: every internal page/anchor target resolves, each page has exactly one H1, and there are zero script tags.
-- Output privacy check: no CV PDF, phone number or $40,000 estimate in the generated site.
-- Browser visual review: homepage and all three project pages at 1440×960 and 390×844. No horizontal overflow in inspected layouts. Additional 320px checks passed for homepage and PumpSync.
-- Keyboard: Tab reaches the visible skip link, focus outline is present, and Enter transfers focus to main content.
-- Native project link navigation, direct project URL loading and PumpSync refresh worked.
-- Production preview: homepage and PumpSync loaded; PumpSync had zero scripts and no overflow. Unknown URL showed the custom 404 and working home destination.
-- Primary text contrast against cream: charcoal 13.81:1, muted 5.38:1, green 8.87:1. Muted text against the pale project surface is 5.00:1. Diagram numbering was darkened to this muted colour. Terracotta is used decoratively, not for small text.
-- Reduced-motion CSS disables smooth scrolling and transitions; all content/navigation is static and independent of JavaScript.
+- `npm run check`: 18 files, zero errors, warnings or hints. `npm run build`: eight static pages including custom 404; 66 responsive image variants.
+- npm dependency audit at installation: zero vulnerabilities. Added Node type definitions for build-time document size calculation.
+- Parsed production HTML: 213 internal page/anchor/asset references resolve, all use `/portfolio/`, each page has one H1.
+- Production HTTP HEAD checks: homepage, all four project routes, Metricell, Outside the code, all three PDFs and all three videos returned 200 with expected content types.
+- Browser: desktop visual checks of homepage, PumpSync, football, Airbnb, Metricell and personal page. Mobile route/overflow checks across all seven content pages at 390 px; additional 320 px checks for homepage and all three new pages. Fixed a film-section grid minimum-width overflow and verified the personal page at 320 px again.
+- Browser native playback: all three videos advanced with readyState 4 and no video error. Full durations verified with ffprobe: 149.933 s PumpSync; 299.467 s football; 26.930 s basketball. PumpSync is silent; football and basketball retain AAC audio.
+- PDF view link from Airbnb opens the local PDF destination. Download links have native download attributes; PDF and video URLs are served correctly beneath the base path. Source files remain separate from published copies.
+- PDF text extraction: dissertation 70 pages/~177k characters; Airbnb 53 pages/~105k; public placement copy 13 pages/~25k. Converted placement layout rendered and visually inspected, with administrative cover/blank/signed pages omitted. No DOCX renamed to PDF.
+- Photos have no EXIF metadata. Aspect ratios retained. Lazy responsive images and preload=none video avoid eager media downloads. Keyboard-operated native players work; visible player focus ring observed. Existing skip link, focus styles and reduced-motion CSS retained.
+- No push or deployment. Existing manual workflow and base path preserved.
 
-## Limits
+## Limits and content notes
 
-- No live GitHub Pages deployment was run, as requested. Workflow and user-site paths are prepared using current official Astro documentation. Validate live URLs after manually publishing.
-- Not a full assistive-technology, automated accessibility, Lighthouse or cross-browser audit. Reduced motion was reviewed in CSS rather than emulated in the browser.
-- External project destinations were copied from verified CV links. Research retrieval could not load the football repository or Inspire Talent website; current external availability remains to be checked.
-- No source screenshots or public CV were supplied. These are omitted rather than fabricated.
+- No full screen-reader, cross-browser or automated WCAG/Lighthouse audit. Reduced motion reviewed in CSS, not browser emulation. Caption/transcript gap remains for narration; visual outlines are labelled accurately. Incidental music in basketball audio not conclusively assessed.
+- Download destinations and attributes checked; not every browser download dialogue exercised. Live GitHub Pages deployment remains unchanged and was not tested for this update.
+- Uncertain Metricell screenshot matches are omitted and recorded in IMPLEMENTATION_NOTES.md. Optional personal captions/preferences are in CONTENT_TODO.md, not visitor-facing pages.
+- Built size approximately 32.6 MiB; largest selected file ~6.5 MiB. Within current GitHub/Pages size limits; future video traffic may warrant different hosting.
 
-## Preview
+## Working previews
 
-The production preview was started at http://127.0.0.1:4322 and left open for review. If it is no longer running, use `npm run preview -- --port 4322` after building. Stop it with `npx astro preview stop`. The development server can be started again with `npm run dev`.
+Production: http://127.0.0.1:4323/portfolio/ — latest build, left running.
+Development: http://127.0.0.1:4322/portfolio/ — reflects edits immediately.
 
-## GitHub Pages project-path preparation
-
-Target: https://austinbwanika.github.io/portfolio/ (repository AustinBwanika/portfolio).
-
-- Astro check: 0 errors, warnings or hints; production build passed.
-- Local production HTTP checks passed for `/portfolio/` and all three `/portfolio/projects/<slug>/` routes opened directly.
-- Validated 41 internal page, anchor and asset references against the build output; stylesheet and favicon requests returned HTTP 200 under `/portfolio/`.
-- Canonical and Open Graph URLs include the project base path. The generated 404 uses Astro’s `/portfolio/404/` canonical route while GitHub serves `404.html` for missing pages.
-- No image, video or public document files currently exist; future public assets must use the existing `url()` helper as documented in Projects.md. The optional CV link already does so.
-- The manually triggered workflow follows Astro’s official GitHub Pages guide. It has not been run against GitHub Pages as part of this preparation.
-- Earlier preview URLs in this log describe previous checks. Development and preview URLs now require `/portfolio/`.
+If stopped: `npm run dev -- --port 4322`, or `npm run build` then `npm run preview -- --port 4323`. Always include `/portfolio/` in the browser URL. A production preview changes only after rebuilding.

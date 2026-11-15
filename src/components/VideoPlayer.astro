@@ -1,0 +1,14 @@
+---
+import type { ImageMetadata } from 'astro';
+import { url } from '../data/site';
+interface Props { file: string; poster: ImageMetadata; title: string; description: string; portrait?: boolean; captions?: string; }
+const { file, poster, title, description, portrait = false, captions } = Astro.props;
+---
+<figure class:list={['video-figure', { 'portrait-video': portrait }]}>
+  <video controls playsinline preload="none" poster={poster.src} aria-label={title} width={poster.width} height={poster.height}>
+    <source src={url(file)} type="video/mp4" />
+    {captions && <track kind="descriptions" src={url(captions)} srclang="en" label="Visual descriptions" />}
+    <a href={url(file)}>Open {title}</a>
+  </video>
+  <figcaption><strong>{title}</strong><span>{description}</span><a href={url(file)}>Open full recording ↗</a></figcaption>
+</figure>

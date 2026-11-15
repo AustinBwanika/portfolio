@@ -1,17 +1,17 @@
-# Content to confirm or supply
+# Focused content questions
 
-The site uses the supplied CV as its primary factual source and the brief for The Kasetunes Show. No private source document has been copied into this repository. Missing assets and unverifiable claims are omitted from the rendered site.
+The supplied materials have been incorporated; these optional details are isolated from the published pages.
 
-- Supply a publication-ready CV with phone number and any home address removed. Download is intentionally absent until then; see `profile.publicCv` in `src/data/site.ts`.
-- Supply approved, redacted screenshots for the three selected projects, with context and alt text. Current case studies use labelled, source-supported conceptual flows, not fabricated interfaces.
-- Optional: supply a personal photo and permission to publish it.
-- Confirm PumpSync’s team structure and pilot/deployment status; supply a public repository/demo URL if available. No URL was invented.
-- PumpSync: provide measured operational results if available. The CV’s estimated $40,000 loss figure is omitted entirely; it must not be presented as savings or generalised without evidence.
-- Football: confirm team/individual scope, dataset sources, sample sizes, train/test split, temporal validation and leakage controls. The 80% accuracy / 0.79 F1 are CV-reported test results for defender and midfielder performance-tier classification, not validated transfer success.
-- Inspire Talent: the booking platform is https://inspiretalentsbookings.space/. The user supplied https://talentconsults.com/ as the client’s business website; both are linked separately. Confirm client permission before publishing screenshots; supply any measured outcomes.
-- Confirm the football repository remains publicly accessible; its URL is verified in the CV, but research retrieval failed. CrossTune is also linked exactly as supplied.
-- Optional: provide an approved link to The Kasetunes Show, and a public London Airbnb repository/report.
-- Proposed next steps on case studies are explicitly suggestions, not completed work or commitments.
-- Review the first-person prose before publishing. Personal motivations are drafted from the brief, not quoted from prior writing.
+- Are there particular films or series you would like to mention, and what do you enjoy about them? The films section currently links to Letterboxd without invented favourites or reviews.
+- Would you like more personal captions for the graduation, restaurant and football photographs? Current captions describe only what is visible; they do not identify other people or invent dates, locations or memories.
+- Is there anything specific you would like to say about basketball or football beyond the supported recreational-team captaincy? No favourite club is inferred from photos.
+- Metricell: can you identify the exact project context for IMG_9771/9772 (road inspection), IMG_9775 (network map), IMG_9778 (coverage) and IMG_9779 (connections)? These are intentionally unused because the document-to-image matches are uncertain. Four well-supported screenshot matches are already included.
+- Optional: provide a corrected transcript of the football presentation. The full narration is preserved, with a visual outline and searchable dissertation; no dialogue has been invented. Audio review did not establish whether the basketball clip contains incidental music, so its original audio remains intact.
+- Optional future updates: PumpSync deployment/pilot status and measured outcomes; Inspire Talent measured outcomes. Current pages avoid presenting estimates as measured benefits.
+- A public CV download is still absent; the previously supplied CV is a source, not a published asset.
 
-GitHub username AustinBwanika is supported by both the CV and public GitHub profile. Deployment repository: AustinBwanika/portfolio, targeting https://austinbwanika.github.io/portfolio/. Publication is controlled by the manual GitHub Actions workflow.
+## Specific source details to be aware of
+
+The placement DOCX contains a signed confidentiality form on converted page 3. The public PDF excludes the first three administrative/cover pages and retains the 13 substantive pages; the original DOCX is untouched. This is not a determination that the confidentiality statement ceases to apply to the report. No deployment has been made.
+
+The football recording’s opening slides include the original university identifier/contact details. The complete recording is retained as requested. It has not been externally uploaded.

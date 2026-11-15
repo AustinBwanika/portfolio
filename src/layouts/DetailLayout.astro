@@ -1,0 +1,13 @@
+---
+import Layout from './Layout.astro';
+import { url } from '../data/site';
+interface Props { title: string; description: string; personal?: boolean; }
+const { title, description, personal = false } = Astro.props;
+---
+<Layout title={`${title} — Austin Bwanika`} description={description}>
+  <div class:list={['case-shell', { 'personal-page': personal }]}>
+    <header class="case-nav"><a class="monogram" href={url()} aria-label="Austin Bwanika home">ab<span>.</span></a><a class="text-link" href={url()}>← Back to the portfolio</a></header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer><a href={url()}>← Back to the portfolio</a><span>Austin Bwanika</span></footer>
+  </div>
+</Layout>
