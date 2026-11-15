@@ -1,0 +1,14 @@
+---
+import { url, type Project } from '../data/site';
+interface Props { project: Project; index: number; }
+const { project, index } = Astro.props;
+---
+<article class:list={['project', { featured: index === 0 }]}>
+  <div class="project-topline"><span class="mini-label">0{index + 1} / {project.category}</span><span class="status">{index === 0 ? 'In development' : index === 1 ? 'Academic project' : 'Client project'}</span></div>
+  <h3><a href={url(`projects/${project.slug}/`)}>{project.title}<span class="project-arrow" aria-hidden="true">↗</span></a></h3>
+  <p class="project-summary">{project.summary}</p>
+  <p class="contribution">{project.contribution}</p>
+  <ul class="tags" aria-label="Technologies">{project.technologies.map(tech => <li>{tech}</li>)}</ul>
+  <a class="text-link" href={url(`projects/${project.slug}/`)}>Read case study <span class="sr-only">for {project.title}</span><span aria-hidden="true">→</span></a>
+  {project.businessLink && <div class="project-links">{project.link && <a class="text-link" href={project.link.href}>{project.link.label} <span aria-hidden="true">↗</span></a>}<a class="text-link" href={project.businessLink.href}>{project.businessLink.label} <span aria-hidden="true">↗</span></a></div>}
+</article>
